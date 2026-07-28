@@ -24,7 +24,9 @@ jobs:
         run: |
           set -euo pipefail
 
-          from_date="$(date -u -d '133 days ago' +'%Y-%m-%dT00:00:00Z')"
+          # Fetch one extra day so visitors west of UTC still get a complete
+          # 134-day local calendar after the client removes future dates.
+          from_date="$(date -u -d '134 days ago' +'%Y-%m-%dT00:00:00Z')"
           to_date="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
           gh api graphql \
